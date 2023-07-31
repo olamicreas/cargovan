@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cargo Van</title>
+    <!-- StyleSheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+  </head>
+  <body>
+    <div class="container-fluid">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick=delete_flash(this)>
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{message}}
+              </div>
+  
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+    <!-- Preloader -->
+    <div class="preloader">
+      <img src="./static/truck.gif" alt="" />
+    </div>
+
+    <header class="header">
+      <a href="" class="logo">Derry's<span class="yellow">delivery</span></a>
+
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+        <a href="" class="btn">Make an Order</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <div class="hamburger">
+        <img src="./static/delivery-man.jpeg" alt="" />
+      </div>
+    </header>
+
+    <!-- Home -->
+    <section class="home" id="home">
+      <div class="content">
+        <h1>Order Your Product <span class="yellow">Easier & Faster.</span></h1>
+        <p>
+          Derry'sdelivery is a leading global cargo van delivery service,
+          connecting sender and reciver of products through its platform.
+        </p>
+        <a href="{{url_for('order')}}" class="home-btn">Order service</a>
+      </div>
+      <div class="image">
+        <img src="./static/adress.jpg" alt="" />
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+      <div class="top">
+        <h2><span class="yellow">Why</span> We are the Best</h2>
+        <p>
+          No matter the size of your project, Derry's delivery will work hand-in-hand with you through the logistical process.
+        </p>
+      </div>
+
+      <div class="bottom">
+        <div class="box">
+          <img src="./static/delivery-man.jpeg" alt="" />
+          <h4>Safety Delivery</h4>
+          <p>
+            Derry's Delivery ensures maximum protection of your project during the logistical process
+          </p>
+          <a href="#">View More <img src="./static/btn-arrow.svg" alt="" /> </a>
+        </div>
+        <div class="box">
+          <img src="./static/fast-food.svg" alt="" />
+          <h4>Healthy Service</h4>
+          <p>
+            No matter the size of your project, Derry's delivery will work hand-in-hand with you through the logistical process.
+          </p>
+          <a href="#">View More <img src="./static/btn-arrow.svg" alt="" /> </a>
+        </div>
+        <div class="box">
+          <img src="./static/order-food.svg" alt="" />
+          <h4>Online Ordering</h4>
+          <p>
+            Sign up to book online, manage and for shipments, and access our services designed to ease logistics burden
+          </p>
+          <a href="#">View More <img src="./static/btn-arrow.svg" alt="" /> </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About #1 -->
+    <section class="about" id="about">
+      <div class="image">
+        <img src="./static/delivery-man.jpeg" alt="" />
+      </div>
+      <div class="content">
+        <h3><span class="yellow">Order</span> anytime and anywhere</h3>
+        <p>
+          This service is 24/7 you can order anytime, anywhere here on our website
+        </p>
+        <a href="{{url_for('order')}}" class="btn">Make an Offer</a>
+      </div>
+    </section>
+
+    <!-- About #2 -->
+    <section class="about about-2">
+      <div class="content">
+        <h3>
+          <span class="yellow">Deliver</span> the products with best safety
+        </h3>
+        <p>
+          
+        </p>
+        <a href="{{url_for('order')}}" class="btn">Make an Offer</a>
+      </div>
+
+      <div class="image">
+        <img src="./static/illus deliver.svg" alt="" />
+      </div>
+    </section>
+
+    <!-- About #3 -->
+    <section class="about about-3" style="gap: 3rem 13rem">
+      <div class="image">
+        <img src="./static/buying online.svg" alt="" />
+      </div>
+
+      <div class="content">
+        <h3><span class="yellow">Track</span> your order very easily</h3>
+        <p>
+          No matter the size of your project, Derry's delivery will work hand-in-hand with you through the logistical process.
+        </p>
+        <a href="#contact" class="btn">Track Now</a>
+      </div>
+    </section>
+
+    <!-- App -->
+    <div class="bd">
+    <section id="contact" class="app">
+  
+      <h1 class="section-header">Contact</h1>
+      
+      <div class="contact-wrapper">
+      
+      <!-- Left contact page --> 
+        
+        <form id="contact-form" class="form-horizontal" role="form">
+           
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="" required>
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" value="" required>
+            </div>
+          </div>
+    
+          <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message" required></textarea>
+          
+          <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
+            <div class="alt-send-button">
+              <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
+            </div>
+          
+          </button>
+          
+        </form>
+        
+      <!-- Left contact page --> 
+        
+          <div class="direct-contact-container">
+    
+            <ul class="contact-list">
+              <li class="list-item"><i class="fa fa-map-marker fa-2x"><span class="contact-text place">City, State</span></i></li>
+              
+              <li class="list-item"><i class="fa fa-phone fa-2x"><span class="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">(212) 555-2368</a></span></i></li>
+              
+              <li class="list-item"><i class="fa fa-envelope fa-2x"><span class="contact-text gmail"><a href="mailto:#" title="Send me an email">hitmeup@gmail.com</a></span></i></li>
+              
+            </ul>
+    
+            <hr>
+            <ul class="social-media-list">
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-github" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-codepen" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-twitter" aria-hidden="true"></i></a>
+              </li>
+              <li><a href="#" target="_blank" class="contact-icon">
+                <i class="fa fa-instagram" aria-hidden="true"></i></a>
+              </li>       
+            </ul>
+            <hr>
+    
+            <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
+    
+          </div>
+        
+      </div>
+      
+    </section>
+    </div>      
+      
+      
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="top">
+        <div class="content">
+          <a href="" class="logo">Derry's<span class="yellow">delivery</span></a>
+          <p>
+            Lorem ipsum dolor sit amet,adipiscing elit. Eu, montes, metus
+            porttitor consectetur pretium. Euismod imperdiet
+          </p>
+        </div>
+
+        <div class="links">
+          <div class="link">
+            <h4>Contact Information</h4>
+            <div>
+              <img src="./static/location-cross.svg" alt="" />
+              <span>122,Albert St, Port Melbourne,Vic 3207.</span>
+            </div>
+            <div>
+              <img src="./static/sms-tracking.svg" alt="" />
+              <span>Derry's delivery@gmail.com</span>
+            </div>
+          </div>
+
+          <div class="link">
+            <h4>Quick Links</h4>
+            <a href="#">Services</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+           
+          </div>
+
+          <div class="link">
+            <h4>Legal</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Term of Use</a>
+            <a href="#">Conditions</a>
+            <a href="#">Location</a>
+          </div>
+
+          <div class="link">
+            <h4>Connect with Us</h4>
+            <div>
+              <img src="./static/instagram.svg" alt="" />
+              <span>Instagram</span>
+            </div>
+            <div>
+              <img src="./static/twitter.svg" alt="" />
+              <span>Twitter</span>
+            </div>
+            <div>
+              <img src="./static/facebook.svg" alt="" />
+              <span>Facebook</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <p>Copyright © 2023 Derry's Delivery Service. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Go To Top -->
+    <div class="scroll-top">
+      <img src="./static/arrow-up-outline.svg" alt="" />
+    </div>
+    <!-- Scripts -->
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  </body>
+</html>
